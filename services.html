@@ -3,9 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-detail-card {
+            min-height: 400px;
+            padding: 40px;
+        }
+        
+        .subtab-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .subtab {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .subtab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .subtab-container {
+                gap: 10px;
+            }
+            
+            .subtab {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+            
+            .modal-content {
+                width: 90%;
+                margin: 10% auto;
+                padding: 30px;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="about-bg">
+    <header>
+        <img src="media/logo.jpg" alt="Company Logo" class="logo">
+        <nav>
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><button>Products</button></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="careers.html" class="nav-link">Careers</a></li>
+                <li><a href="faqs.html" class="nav-link">FAQs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="products-main">
+        <!-- Hero Section -->
+        <section class="products-hero">
+            <h1 class="products-hero-title">Our Solutions for Modern Industry</h1>
+            <p class="products-hero-sub">Design - Manufacturing - Supply - Fabrication</p>
+        </section>
+        <!-- Product Sections -->
+        <section id="piping" class="product-detail-section fade-in">
+            <div class="product-detail-card">
+                <img src="media/logo.jpg" alt="Piping" class="product-detail-img" />
+                <div class="product-detail-content">
+                    <h2>Piping (Process and Utilities)</h2>
+                    <p>We design and install advanced piping systems for process and utility applications, ensuring efficiency, safety, and compliance for a wide range of industries.</p>
+                    <div class="subtab-container">
+                        <button class="subtab" data-modal="process-piping">Process</button>
+                        <button class="subtab" data-modal="utilities-piping">Utilities</button>
+                        <button class="subtab" data-modal="thermal-piping">Thermal</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="paint-circulation" class="product-detail-section fade-in">
+            <div class="product-detail-card reverse">
+                <img src="media/logo.jpg" alt="Paint Circulation System" class="product-detail-img" />
+                <div class="product-detail-content">
+                    <h2>Paint Circulation System</h2>
+                    <p>Our low-pressure paint systems and high-pressure sealer systems deliver consistent, high-quality results for automotive and industrial paint applications.</p>
+                    <div class="subtab-container">
+                        <button class="subtab" data-modal="low-pressure-paint">Low Pressure Paint Circulation System</button>
+                        <button class="subtab" data-modal="high-pressure-sealer">High Pressure Sealer and Wax System</button>
+                        <button class="subtab" data-modal="pigging-system">Pigging System for Fluid Handling System</button>
+                        <button class="subtab" data-modal="automation-robotics">Automation and Robotics</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="plant-integration" class="product-detail-section fade-in">
+            <div class="product-detail-card">
+                <img src="media/logo.jpg" alt="Plant & System Integration" class="product-detail-img" />
+                <div class="product-detail-content">
+                    <h2>Plant & System Integration</h2>
+                    <p>We provide end-to-end plant and system integration, connecting equipment, automation, and controls for seamless, efficient operations.</p>
+                    <div class="subtab-container">
+                        <button class="subtab" data-modal="bulk-storage">Gasoline Diesel, Brake Oil, Coolant Bulk Storage, Dispensing and Filling System</button>
+                        <button class="subtab" data-modal="die-release">Die Release Agent System</button>
+                        <button class="subtab" data-modal="water-treatment">Water Treatment System</button>
+                        <button class="subtab" data-modal="heavy-machinery">Heavy Machinery & Equipments, Robotic Mover and Installation</button>
+                        <button class="subtab" data-modal="shower-tester">Shower Tester Booth</button>
+                        <button class="subtab" data-modal="clean-room">Clean Room System</button>
+                        <button class="subtab" data-modal="fire-fighting">Fire Fighting System</button>
+                        <button class="subtab" data-modal="nvh-system">NVH System</button>
+                        <button class="subtab" data-modal="ventilation">Ventilation System</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="manufacturing" class="product-detail-section fade-in">
+            <div class="product-detail-card reverse">
+                <img src="media/logo.jpg" alt="Manufacturing" class="product-detail-img" />
+                <div class="product-detail-content">
+                    <h2>Manufacturing / Fabrication Services</h2>
+                    <p>From custom fabrication to large-scale manufacturing, we deliver precision, quality, and innovation for every project.</p>
+                    <div class="subtab-container">
+                        <button class="subtab" data-modal="asu-riser">ASU Riser & Header</button>
+                        <button class="subtab" data-modal="asu-drain">ASU Drain Pan</button>
+                        <button class="subtab" data-modal="oil-storage">Oil Storage Tanks</button>
+                        <button class="subtab" data-modal="pcs-skid">PCS Skid and Piping</button>
+                        <button class="subtab" data-modal="pcs-tanks">PCS Tanks</button>
+                        <button class="subtab" data-modal="heavy-structure">Heavy Structure</button>
+                        <button class="subtab" data-modal="pt-ed-piping">PT/ED Piping</button>
+                        <button class="subtab" data-modal="pt-ed-tank">PT/ED Tank</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call to Action -->
+        <section class="products-cta">
+            <h2>Let's Build the Future Together</h2>
+            <a href="#contact" class="products-cta-btn">Contact Us</a>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title"></h3>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 10) {
+            header.classList.add('header-shadow');
+        } else {
+            header.classList.remove('header-shadow');
+        }
+    });
     
+    // Fade-in animation on scroll
+    const fadeEls = document.querySelectorAll('.fade-in');
+    function fadeInOnScroll() {
+        fadeEls.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+                el.classList.add('visible');
+            }
+        });
+    }
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('DOMContentLoaded', fadeInOnScroll);
+
+    // Modal functionality
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.querySelector('.close-btn');
+    let hoverTimeout;
+
+    const modalContent = {
+        'process-piping': {
+            title: 'Process Piping',
+            body: 'Advanced process piping systems designed for high-temperature and high-pressure applications. Our engineered solutions ensure optimal flow dynamics, minimal pressure drops, and maximum operational efficiency. We utilize cutting-edge materials and precision engineering to deliver systems that exceed industry standards.'
+        },
+        'utilities-piping': {
+            title: 'Utilities Piping',
+            body: 'Comprehensive utility piping solutions for water, steam, air, and gas distribution networks. Our systems feature intelligent routing, corrosion protection, and energy-efficient design principles. We integrate smart monitoring capabilities for real-time performance tracking and predictive maintenance.'
+        },
+        'thermal-piping': {
+            title: 'Thermal Piping',
+            body: 'Specialized thermal piping systems engineered for critical applications in oil & gas, chemical processing, and power generation. Our designs incorporate advanced stress analysis, fatigue resistance, and safety protocols to ensure reliable operation under extreme conditions.'
+        },
+        'low-pressure-paint': {
+            title: 'Low Pressure Paint Circulation System',
+            body: 'Efficient low-pressure paint circulation systems optimized for automotive and industrial applications. Our systems feature precise flow control, temperature management, and contamination prevention. We integrate smart sensors for real-time monitoring and automated adjustments.'
+        },
+        'high-pressure-sealer': {
+            title: 'High Pressure Sealer and Wax System',
+            body: 'Advanced high-pressure sealer systems delivering consistent, high-quality finishes. Our technology ensures uniform application, optimal coverage, and superior adhesion properties. We incorporate automated controls for precise pressure and flow management.'
+        },
+        'pigging-system': {
+            title: 'Pigging System for Fluid Handling System',
+            body: 'Pigging systems are used to clean, inspect, and maintain pipelines. They can be manual or automated and are essential for ensuring the integrity and efficiency of fluid handling systems.'
+        },
+        'automation-robotics': {
+            title: 'Automation and Robotics',
+            body: 'Automation and robotics are used to automate tasks and processes in various industries. They can improve efficiency, reduce costs, and increase safety.'
+        },
+        'bulk-storage': {
+            title: 'Gasoline Diesel, Brake Oil, Coolant Bulk Storage, Dispensing and Filling System',
+            body: 'Advanced bulk storage systems designed for efficient storage and handling of gasoline, diesel, brake oil, coolant, and other fluids. Our systems feature intelligent routing, corrosion protection, and energy-efficient design principles. We integrate smart monitoring capabilities for real-time performance tracking and predictive maintenance.'
+        },
+        'die-release': {
+            title: 'Die Release Agent System',
+            body: 'Die release agent systems are used to facilitate the removal of molds from cast parts. Our systems feature advanced materials and precision engineering to ensure uniform application and optimal coverage.'
+        },
+        'water-treatment': {
+            title: 'Water Treatment System',
+            body: 'Water treatment systems are used to clean, purify, and disinfect water for various applications. Our systems feature advanced filtration, disinfection, and monitoring capabilities to ensure high-quality water for industrial and domestic use.'
+        },
+        'heavy-machinery': {
+            title: 'Heavy Machinery & Equipments, Robotic Mover and Installation',
+            body: 'Heavy machinery and equipment are used in various industries to perform tasks that are too large or dangerous for humans. Our systems feature advanced automation, precision engineering, and safety protocols to ensure reliable operation and efficient handling.'
+        },
+        'shower-tester': {
+            title: 'Shower Tester Booth',
+            body: 'Shower tester booths are used to test the quality and performance of automotive paint. Our systems feature advanced lighting, temperature control, and inspection capabilities to ensure accurate and consistent results.'
+        },
+        'clean-room': {
+            title: 'Clean Room System',
+            body: 'Clean rooms are used in various industries to maintain a controlled environment for manufacturing and assembly. Our systems feature advanced filtration, air circulation, and monitoring capabilities to ensure high-quality and consistent results.'
+        },
+        'fire-fighting': {
+            title: 'Fire Fighting System',
+            body: 'Fire fighting systems are used to extinguish fires and protect people and property. Our systems feature advanced detection, suppression, and monitoring capabilities to ensure rapid response and effective extinguishment.'
+        },
+        'nvh-system': {
+            title: 'NVH System',
+            body: 'NVH systems are used to measure and analyze noise, vibration, and harshness in vehicles and machinery. Our systems feature advanced measurement technology and data analysis capabilities to ensure accurate and consistent results.'
+        },
+        'ventilation': {
+            title: 'Ventilation System',
+            body: 'Ventilation systems are used to provide fresh air and remove contaminants from indoor environments. Our systems feature advanced filtration, air circulation, and monitoring capabilities to ensure high-quality and consistent results.'
+        },
+        'asu-riser': {
+            title: 'ASU Riser & Header',
+            body: 'ASU risers and headers are used in various industries to provide structural support and containment. Our systems feature advanced materials and precision engineering to ensure reliable operation and structural integrity.'
+        },
+        'asu-drain': {
+            title: 'ASU Drain Pan',
+            body: 'ASU drain pans are used in various industries to collect and drain liquids. Our systems feature advanced materials and precision engineering to ensure efficient drainage and structural integrity.'
+        },
+        'oil-storage': {
+            title: 'Oil Storage Tanks',
+            body: 'Oil storage tanks are used in various industries to store and contain liquids. Our systems feature advanced materials and precision engineering to ensure efficient storage and structural integrity.'
+        },
+        'pcs-skid': {
+            title: 'PCS Skid and Piping',
+            body: 'PCS skids and piping are used in various industries to provide structural support and containment. Our systems feature advanced materials and precision engineering to ensure reliable operation and structural integrity.'
+        },
+        'pcs-tanks': {
+            title: 'PCS Tanks',
+            body: 'PCS tanks are used in various industries to store and contain liquids. Our systems feature advanced materials and precision engineering to ensure efficient storage and structural integrity.'
+        },
+        'heavy-structure': {
+            title: 'Heavy Structure',
+            body: 'Heavy structures are used in various industries to provide structural support and containment. Our systems feature advanced materials and precision engineering to ensure reliable operation and structural integrity.'
+        },
+        'pt-ed-piping': {
+            title: 'PT/ED Piping',
+            body: 'PT/ED piping is used in various industries to provide structural support and containment. Our systems feature advanced materials and precision engineering to ensure reliable operation and structural integrity.'
+        },
+        'pt-ed-tank': {
+            title: 'PT/ED Tank',
+            body: 'PT/ED tanks are used in various industries to store and contain liquids. Our systems feature advanced materials and precision engineering to ensure efficient storage and structural integrity.'
+        }
+    };
+
+    function showModal(modalId) {
+        const content = modalContent[modalId];
+        if (content) {
+            modalTitle.textContent = content.title;
+            modalBody.textContent = content.body;
+            modal.style.display = 'block';
+        }
+    }
+
+    function hideModal() {
+        modal.style.display = 'none';
+    }
+
+    // Click events
+    document.querySelectorAll('.subtab').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showModal(button.dataset.modal);
+        });
+    });
+
+    // Hover events
+    document.querySelectorAll('.subtab').forEach(button => {
+        button.addEventListener('mouseenter', (e) => {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = setTimeout(() => {
+                showModal(button.dataset.modal);
+            }, 500);
+        });
+
+        button.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+        });
+    });
+
+    // Modal hover events
+    modal.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimeout);
+    });
+
+    modal.addEventListener('mouseleave', () => {
+        hoverTimeout = setTimeout(hideModal, 300);
+    });
+
+    // Close modal events
+    closeBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            hideModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            hideModal();
+        }
+    });
+    </script>
 </body>
 </html> 

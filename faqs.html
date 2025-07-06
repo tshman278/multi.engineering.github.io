@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQs</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    
+<body class="about-bg">
+    <header>
+        <img src="media/logo.jpg" alt="Company Logo" class="logo">
+        <nav>
+            <ul class="nav-tabs">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Products</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="careers.html" class="nav-link">Careers</a></li>
+                <li><button>FAQs</button></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="about-main">
+        <!-- FAQs content will go here -->
+    </main>
+    <script>
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 10) {
+            header.classList.add('header-shadow');
+        } else {
+            header.classList.remove('header-shadow');
+        }
+    });
+    </script>
 </body>
 </html> 
